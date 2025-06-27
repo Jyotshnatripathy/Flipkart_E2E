@@ -30,9 +30,13 @@ def test_flipkart_shopping_flow(driver):
     # Click login
     login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(text(),'Login')]")))
     login_btn.click()
+    time.sleep(10)  # Wait for login modal to appear
 
     # Enter credentials (replace with your test account)
-    wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@class='r4vIwl BV+Dqf']"))).send_keys("Enter your phone number")
+    phone_number = input("Enter your Flipkart test phone number: ")
+    if phone_number:
+        wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@class='r4vIwl BV+Dqf']"))).send_keys(phone_number)
+    
     # driver.find_element(By.XPATH, "//input[@type='password']").send_keys("test_password")
     driver.find_element(By.XPATH, "//button[contains(text(),'Request OTP')]").click()
     # Enter OTP (replace with your test OTP)
